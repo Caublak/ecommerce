@@ -1,14 +1,29 @@
 <?php
+
+//Include libraries
 require __DIR__ . '/vendor/autoload.php';
+
+//Create instance of MongoDB client
 $mongoClient = (new MongoDB\Client);
+
+//Select a database
 $db = $mongoClient->local;
 
-$orderID = filter_input(INPUT_POST, 'orderID', FILTER_SANITIZE_STRING);
+//Extract ID from POST data
+$prodID = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
 
-$result = $db->order->deleteOne(['_id' => new MongoDB\BSON\ObjectID($orderID)]);
+//Build PHP array with delete criteria 
+$deleteCriteria = [
+    "_id" => new MongoDB\BSON\ObjectID($prodID)
+];
 
-if ($result->getDeletedCount() == 1) {
-    echo 'Order deleted successfully';
-} else {
-    echo 'Error deleting order';
+//Delete the order document
+$deleteRes = $db->order->deleteOne($deleteCriteria);
+
+//Echo result back to user
+if($deleteRes->getDeletedCount() == 1){
+    echo 'Order deleted successfully.';
+}
+else{
+   echo 'Error deleting order';
 }

@@ -10,15 +10,13 @@ $orders = $db->order->find();
 
 //Output results onto page
 echo '<table>';
-echo '<tr><th>OrderID</th><th>Username</th><th>Product</th><th>Price(Rs)</th><th>Actions</th></tr>';
+echo '<tr><th>OrderID</th><th>Username</th><th>Product</th><th>Price(Rs)</th></tr>';
 foreach ($orders as $document) {
     echo '<tr>';
     echo '<td>' . $document["_id"] . "</td>";
     echo '<td>' . $document["Username"] . "</td>";
     echo '<td>' . $document["ProductName"] . "</td>";
     echo '<td>' . $document["Price"] . "</td>";
-    echo '<td><button class="action-btn" action="delete_order.php" method="post">Delete</button></td>';
-
     echo '</tr>';
 }
 echo '</table>';

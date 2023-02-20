@@ -31,6 +31,10 @@
 
     <!-- Start of table customer orders -->
     <div class="cart-container">
+    <form>
+        <input type="text" id="references" name="ids" placeholder="ID:"><br><br><span></span>
+        <input type="submit" onclick="deleteOrder(event)" value="Delete Product">
+    </form>
         <table id="ServerOrder">
             <!-- PHP loads product information -->        
             <script>
@@ -38,6 +42,7 @@
                     loadOrder();
                 }
             </script>
+
 
             <!-- <script>
                 $(document).on('click', '.action-btn', function() {
@@ -111,6 +116,7 @@
     <script src="delete_product.js"></script>
     <script src="edit_product.js"></script>
     <script src="list_orders.js"></script>
+    <script src="delete_order.js"></script>
 </body>
 
 </html>

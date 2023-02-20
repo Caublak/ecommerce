@@ -24,3 +24,24 @@ function loadOrder() {
         alert('An error occurred while loading content from the server.');
       });
   }
+
+// function deleteOrder() {
+//     // Listen for click event on Delete button
+//     var deleteButtons = document.querySelectorAll('.action-btn');
+//     deleteButtons.forEach(function(button) {
+//         button.addEventListener('click', function() {
+//             // Get the order ID from the data-orderid attribute
+//             var orderId = this.getAttribute('data-orderid');
+
+//             // Make AJAX request to delete_order.php with the order ID
+//             var xhr = new XMLHttpRequest();
+//             xhr.open('POST', 'delete_order.php');
+//             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//             xhr.onload = function() {
+//                 // Reload the page to show updated order list
+//                 location.reload();
+//             };
+//             xhr.send('orderId=' + orderId);
+//         });
+//     });
+// }
