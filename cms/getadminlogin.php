@@ -19,7 +19,7 @@
 
     //creating an array with our criteria
 
-    $criteriaToFind = ["Username" => $username];
+    $criteriaToFind = ["username" => $username];
 
     $resultArray = $collection->find($criteriaToFind)->toArray();
 
@@ -42,7 +42,7 @@
     {
         //Get customer and check password
         $admin = $resultArray[0];
-        if ($admin['Password'] != $password)
+        if ($admin['password'] != $password)
         {
             echo '<script>alert("Incorrect password.");</script>';
             echo '<script>window.location.href="login.php";</script>';

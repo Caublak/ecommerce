@@ -24,10 +24,10 @@
 
     <!-- Start of admin login -->
     <div class="LoginBody">
-        <form onsubmit action="getadminLogin.php" method="post">
+        <form class="LoginBody" onsubmit action="getadminLogin.php" method="post">
             <div id="conlogin">
                 <h2 id="Login-title">ADMIN LOGIN</h2>
-                <img src="../images/LogIcon.jpg" class="Login-icon">
+                <!-- <img src="../images/LogIcon.jpg" class="Login-icon"> -->
 
                 <!-- Entry box for username -->
                 <input class="loginput" id="uname" type="text" placeholder="Username" name="uname" required />

@@ -173,8 +173,9 @@ label {
 }
 
 /* The input text for the action  */
-input[type="text"] {
+.form-container input[type="text"] {
     width: 100%;
+    /* width:300px; */
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -185,7 +186,7 @@ input[type="text"] {
 }
 
 /* The text for the button in action  */
-input[type="submit"] {
+.form-container input[type="submit"] {
     width: 33%;
     background-color: #4CAF50;
     color: white;
@@ -200,7 +201,7 @@ input[type="submit"] {
 }
 
 /* On hover, buttons change colour */
-input[type="submit"]:hover {
+.form-container input[type="submit"]:hover {
     background-color: #45a049;
 }
 
@@ -253,10 +254,10 @@ footer p {
     width: 100%;
     margin-top: 40px;
     border-radius: 20px;
-    height: 500px;
+    height: 350px;
     width: 500px;
     translate: 50%;
-    margin-left: 14%;
+    margin-left: 28%;
     border: 10px solid #708188;
     background-color: #25363d;
     align-content: center;
@@ -264,8 +265,8 @@ footer p {
     justify-content: center;
 }
 .LoginBody {
-    margin-bottom: 8rem;
-    margin-top: 5rem;
+    margin-bottom: 11rem;
+    margin-top: 12rem;
     justify-content: center;
     align-items: center;
 }
@@ -276,7 +277,8 @@ footer p {
     font-size: 19px;
     margin-top: 30px;
     height: 40px;
-    width: 300px;
+    /* width: 300px; */
+    width: 100%;
     margin-left: 90px;
     border-radius: 10px;
     border: 3px solid #708188;
