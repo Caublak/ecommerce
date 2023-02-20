@@ -32,60 +32,48 @@
     <!-- Start of table customer orders -->
     <div class="cart-container">
         <table>
-            <thead>
-                <tr>
-                    <!-- The heading of the table -->
-                    <th>Reference</th>
-                    <th>Username</th>
-                    <th>Product Name</th>
-                    <th>Price(Rs)</th>
-                    <th>Quantity</th>
-                    <th>Total(Rs)</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="cart-items">
-                <tr>
-                    <!-- The details of the table -->
-                    <td>C1GY</td>
-                    <td>Adhiveer</td>
-                    <td>Dumbbell 2kg</td>
-                    <td>500</td>
-                    <td>2</td>
-                    <td>1000</td>
-                    <td>20/03/22</td>
+            <!-- PHP loads product information -->        
+            <?php
 
-                    <!-- A delete button for each row at the end of the table -->
-                    <td><button class="action-btn">Delete</button></td>
-                </tr>
-                <tr>
-                    <!-- The details of the table -->
-                    <td>C45T</td>
-                    <td>Lokesh</td>
-                    <td>Dumbell 4kg</td>
-                    <td>750</td>
-                    <td>2</td>
-                    <td>1500</td>
-                    <td>01/03/22</td>
+            //Connect to MongoDB and select database
+            require __DIR__ . '/vendor/autoload.php';
+            $mongoClient = (new MongoDB\Client);
+            $db = $mongoClient->local;
 
-                    <!-- A delete button for each row at the end of the table -->
-                    <td><button class="action-btn">Delete</button></td>
-                </tr>
-                <tr>
-                    <!-- The details of the table -->
-                    <td>C265</td>
-                    <td>Chetan</td>
-                    <td>Dumbell 8kg</td>
-                    <td>1000</td>
-                    <td>5</td>
-                    <td>5000</td>
-                    <td>25/03/22</td>
+            //Find all orders
+            $orders = $db->order->find();
 
-                    <!-- A delete button for each row at the end of the table -->
-                    <td><button class="action-btn">Delete</button></td>
-                </tr>
-            </tbody>
+            //Output results onto page
+            echo '<table>';
+            echo '<tr><th>OrderID</th><th>Username</th><th>Product</th><th>Price(Rs)</th><th>Actions</th></tr>';
+            foreach ($orders as $document) {
+                echo '<tr>';
+                echo '<td>' . $document["_id"] . "</td>";
+                echo '<td>' . $document["Username"] . "</td>";
+                echo '<td>' . $document["ProductName"] . "</td>";
+                echo '<td>' . $document["Price"] . "</td>";
+                echo '<td><button class="action-btn" action="delete_order.php" method="post">Delete</button></td>';
+
+                echo '</tr>';
+            }
+            echo '</table>';
+
+            ?>
+            <script>
+                $(document).on('click', '.action-btn', function() {
+                    var orderID = $(this).data('orderid');
+                    $.ajax({
+                        url: 'delete_order.php',
+                        method: 'POST',
+                        data: { orderID: orderID },
+                        success: function(response) {
+                            // Reload the table
+                            $('#orders-table').load(' #orders-table > table');
+                        }
+                    });
+                });
+
+            </script>
         </table>
     </div>
     <!-- End of table customer orders -->
