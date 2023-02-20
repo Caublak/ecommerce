@@ -31,35 +31,15 @@
 
     <!-- Start of table customer orders -->
     <div class="cart-container">
-        <table>
+        <table id="ServerOrder">
             <!-- PHP loads product information -->        
-            <?php
-
-            //Connect to MongoDB and select database
-            require __DIR__ . '/vendor/autoload.php';
-            $mongoClient = (new MongoDB\Client);
-            $db = $mongoClient->local;
-
-            //Find all orders
-            $orders = $db->order->find();
-
-            //Output results onto page
-            echo '<table>';
-            echo '<tr><th>OrderID</th><th>Username</th><th>Product</th><th>Price(Rs)</th><th>Actions</th></tr>';
-            foreach ($orders as $document) {
-                echo '<tr>';
-                echo '<td>' . $document["_id"] . "</td>";
-                echo '<td>' . $document["Username"] . "</td>";
-                echo '<td>' . $document["ProductName"] . "</td>";
-                echo '<td>' . $document["Price"] . "</td>";
-                echo '<td><button class="action-btn" action="delete_order.php" method="post">Delete</button></td>';
-
-                echo '</tr>';
-            }
-            echo '</table>';
-
-            ?>
             <script>
+                window.onload= function() {
+                    loadOrder();
+                }
+            </script>
+
+            <!-- <script>
                 $(document).on('click', '.action-btn', function() {
                     var orderID = $(this).data('orderid');
                     $.ajax({
@@ -73,7 +53,7 @@
                     });
                 });
 
-            </script>
+            </script> -->
         </table>
     </div>
     <!-- End of table customer orders -->
@@ -130,6 +110,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="delete_product.js"></script>
     <script src="edit_product.js"></script>
+    <script src="list_orders.js"></script>
 </body>
 
 </html>
